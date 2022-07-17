@@ -11,10 +11,30 @@ export const getCategories = async (req: Request, res: Response, next: NextFunct
     (async () => {
         // DB fetch data
         const db = await open({ filename: "db.sqlite", driver: sqlite3.Database });
-        const categories = await db.all(`SELECT id, name FROM categories`);
+        let catTable = await db.all(`SELECT * FROM categories`);
+        let closure = await db.all(`SELECT * FROM categories_closure ORDER BY ancestor_id`);
         await db.close();
 
-        // return response
-        res.status(200).json(categories);
+        let result = []; // End result
+        let categories = {}; // Categories dictionary indexed by id
+
+        // Create dictionary
+        catTable.forEach((cat) => {
+            categories[cat.id] = { id: cat.id, name: cat.name };
+        });
+
+        // Data loop
+        Object.keys(categories).forEach((key) => {
+            let obj = { ...categories[key], children: [] };
+
+            closure.forEach((elem) => {
+                if (elem.ancestor_id === elem.descendant_id) return;
+                if (key == elem.ancestor_id) obj.children.push({ ...categories[elem.descendant_id] });
+            });
+            result.push(obj);
+        });
+
+        // Return response
+        res.status(200).json(result);
     })();
 };
