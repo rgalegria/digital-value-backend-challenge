@@ -25,11 +25,12 @@ export const getCategories = async (req: Request, res: Response, next: NextFunct
 
         // Data loop
         Object.keys(categories).forEach((key) => {
-            let obj = { ...categories[key], children: [] };
+            let obj = { ...categories[key], ancestors: [], children: [] };
 
             closure.forEach((elem) => {
                 if (elem.ancestor_id === elem.descendant_id) return;
                 if (key == elem.ancestor_id) obj.children.push({ ...categories[elem.descendant_id] });
+                if (key == elem.descendant_id) obj.ancestors.push({ ...categories[elem.ancestor_id] });
             });
             result.push(obj);
         });
