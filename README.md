@@ -1,34 +1,27 @@
-# Digital Value Backend Challenge
+# Digital Value Backend Challenge GOMEZ, Ricardo
 
-Welcome to the Digital Value Backend Challenge! Thank for your interest in participating in our selection process.
+# Installez l'application
 
-## Goal
+# Backend
 
-The objective is to manipulate some data from an sqlite database and build an api to access it.
+Le backend a été crée avec **Node.js**, **Express.js** avec **TypeScript**.
+<br />
 
-Each level of the challenge is based on top of the previous one, so you can leverage what you already did.
+### Installation
 
-## Guidelines
+-   Dans le terminal de VsCode, situez-vous dans le dossier root `/`.
+    <br />
+-   Démarrer `npm install` pour installer toutes les dependencies du backend.
+    <br />
+-   Dupliquez le fichier `.env-template` qui contient les variables nécessaires pour le fonctionnement du backend.
+    <br />
+-   Veuillez remplir la variable `PORT` avec le # du pot souhaité.
+    <br />
 
-- Clone the repo (do not fork it) and work on top of it
-- Implement each level in ascending order
-- Commit at the end of each level
-- Provide instructions to run each level of the challenge
-- Optionally, host the last level of the challenge
+### Development server
 
-## Rules
+Démarrez le serveur avec la commande `npm run dev` pour avoir accès au serveur de développement. L'application va se recharger automatiquement si vous modifiez un fichier source.
 
-- Use Node.js, you can use any frameworks or libs
-- TypeScript is preferred but not required
-- Use version control to deliver the test
+### Naviguer entre niveaux
 
-## What will be evaluated?
-
-- Clean, readable and well-organized code
-- Compliance with guidelines and rules
-- Separation of concerns
-- Logic used to write/build sql queries
-- API routes design
-
-Let's get started! Go to [First level](level1)
-
+Sur git, utilisez la commande `git checkout` + l'identifieur **SHA1** du commit naviguer entre les differents niveaux du challenge.
